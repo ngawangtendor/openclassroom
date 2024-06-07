@@ -6,6 +6,8 @@
 		<link rel="stylesheet" href="styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="module" src="pieces.js"></script>
+		<script src="pieces.js"></script>
+		<script src="pieces-autos.json"></script>
 	</head>
 	<body>
 		<header>
@@ -16,10 +18,22 @@
 			<!-- Menu de recherche -->
 			<section class="filtres">
 				<h3>Filtres</h3>
+				<button class="btn-trier">Trier par prix croissant</button>
+				<br>
+				<button class="btn-filtrer">Filtrer les pièces non abordables</button>
+				<br>
+				<button class="btn-decroissant"> Trier par prix décroissant</button>
+				<br>
+				<button class="btn-nodesc"> Filtrer les pièces sans description</button>
 			</section>
+			
 
-			<!-- Fiches produits -->
 			<section class="fiches">
+			<!-- Fiches produits -->
+				<div class="abordables">
+					<p>Pièce abordables</p>
+				</div>
+			
 			</section>
 		</main>
 	</body>

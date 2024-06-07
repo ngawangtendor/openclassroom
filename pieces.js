@@ -25,7 +25,7 @@ for (let i = 0; i < pieces.length; i++) {
 	categorieElement.innerText = article.categorie ?? "aucune catégorie";
 
 	const descriptionElement = document.createElement("p");
-	descriptionElement.innerText = article.description ?? "Pas de description pour le moment" ;
+	descriptionElement.innerText = article.description ?? "Pas de description pour le moment";
 
 	const disponibiliteElement = document.createElement("p");
 	disponibiliteElement.innerText = `Disponible: ${article.disponibilite ? "En stock" : "Rupture de stock"}`;
@@ -68,19 +68,47 @@ boutonFiltrer.addEventListener("click", function () {
 //signifie quoi filtrer ?
 //Filtrer signifie sélectionner les éléments d'un tableau en fonction d'une condition donnée.
 
+// affichier des pieces en croissant
 const boutonDecroissant = document.querySelector(".btn-decroissant");;
-boutonDecroissant.addEventListener("click", function(){
+boutonDecroissant.addEventListener("click", function () {
 	const piecesOrdonnees = Array.from(pieces);
-	piecesOrdonnees.sort(function(a, b){
+	piecesOrdonnees.sort(function (a, b) {
 		return b.prix - a.prix;
 	});
-	console.log(piecesOrdonnees);	
+	console.log(piecesOrdonnees);
 })
 
+// affichier les description de la pieces
 const boutonNoDescription = document.querySelector(".btn-nodesc");
-boutonNoDescription.addEventListener("click", function(){
-	const piecesFiltrees = pieces.filter(function(piece){
+boutonNoDescription.addEventListener("click", function () {
+	const piecesFiltrees = pieces.filter(function (piece) {
 		return piece.description
 	});
 	console.log(piecesFiltrees);
 })
+
+// affichier seulement les noms des pieces
+//Fonction lambda pieces => pieces.nom
+//Fonction normal function(pieces) 
+//	{return pieces.nom}
+//map sert a générer un nouveau tableau à partir d'un tableau existant
+const noms = pieces.map(pieces => pieces.nom)
+const prixA = pieces.map(pieces => pieces.prix)
+//afficher les prix des pieces a cote du nom
+//splice permet de supprimer des éléments d'un tableau
+for(let i = pieces.length -1; i >= 0; i--){
+	if(pieces[i].prix < 28){
+		noms.splice(i, 1);
+		prixA.splice(i, 1);
+	}
+}
+console.log(noms, prixA);
+
+const abordablesElement = document.createElement('ul');
+
+for (let i = 0; i < noms.length; i++) {
+	const nomElement = document.createElement('li');
+	nomElement.innerText = noms[i] + " - " + prixA[i] + "€";
+	abordablesElement.appendChild(nomElement);
+}
+document.querySelector('.abordables').appendChild(abordablesElement);
