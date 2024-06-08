@@ -117,14 +117,22 @@ document.querySelector('.disponibles').appendChild(pElementDispponible).appendCh
 
 
 
-
 const inputPrixMax = document.querySelector("#prix-max");
-
+ 
 
 inputPrixMax.addEventListener("input", function () {
 	const piecesFiltrees = pieces.filter(function (piece) {
 		return piece.prix <= inputPrixMax.value;
+		// value permet de récupérer la valeur d'un input.
 	});
 	document.querySelector(".fiches").innerHTML = "";
 	genererPieces(piecesFiltrees);
+});
+
+
+
+let valuesElement = document.getElementById('values');
+
+inputPrixMax.addEventListener('input', function() {
+    valuesElement.innerText = `prix montant : ${inputPrixMax.value} €`;
 });
